@@ -23,6 +23,11 @@ public class L011 {
             System.out.println(maxArea(new int[] {1,2,1}));
         }
 
+        /**
+         * 核心思路是双指针，移动短板，只有移动短板才有可能让面积变大
+         * @param height
+         * @return
+         */
         public static int maxArea(int[] height) {
             int maxArea = 0;
             int left = 0;
