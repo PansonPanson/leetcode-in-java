@@ -46,6 +46,7 @@ public class L144 {
                 // 遍历到最左子节点，然后pop, 遍历最左子节点的右节点
                 while(root != null) {
                     res.add(root.val);
+                    // 不要混用 add ，add is addLast
                     stack.push(root);
                     root = root.left;
                 }
