@@ -85,4 +85,24 @@ public class L094 {
             return res;
         }
     }
+
+    class Solution03 {
+        public List<Integer> inorderTraversal(TreeNode root) {
+            List<Integer> res = new ArrayList<>();
+            if(root == null) {
+                return res;
+            }
+            Deque<TreeNode> stack = new LinkedList<>();
+            while(!stack.isEmpty() || root != null) {
+                while(root != null) {
+                    stack.push(root);
+                    root = root.left;
+                }
+                TreeNode node = stack.pop();
+                res.add(node.val);
+                root = node.right;
+            }
+            return res;
+        }
+    }
 }

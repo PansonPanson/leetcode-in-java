@@ -32,6 +32,35 @@ public class L145 {
         }
     }
 
+    class Solution03 {
+        public List<Integer> postorderTraversal(TreeNode root) {
+            List<Integer> res = new ArrayList<>();
+            Deque<TreeNode> stack = new LinkedList<>();
+            TreeNode pre = null;
+            while(!stack.isEmpty() || root != null) {
+                // 遍历左子树
+                while(root != null) {
+                    stack.push(root);
+                    root = root.left;
+                }
+                root = stack.pop();
+                // 当右子树不存在或者未被访问过时
+                if(root.right == null || pre == root.right) {
+                    res.add(root.val);
+                    pre = root;
+                    // 防止再次遍历左子树
+                    root = null;
+                } else {
+                    stack.push(root);
+                    root = root.right;
+                }
+            }
+
+            return res;
+        }
+
+    }
+
     public class Solution {
         public List<Integer> postorderTraversal(TreeNode root) {
             List<Integer> res = new ArrayList<>();

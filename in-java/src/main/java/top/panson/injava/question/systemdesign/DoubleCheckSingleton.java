@@ -6,18 +6,18 @@ package top.panson.injava.question.systemdesign;
  */
 public class DoubleCheckSingleton {
 
-    private static volatile Singleton.DoubleCheckSingleton instance;
+    private static volatile DoubleCheckSingleton instance;
 
     private DoubleCheckSingleton() {
     }
 
-    public Singleton.DoubleCheckSingleton getInstance() {
+    public DoubleCheckSingleton getInstance() {
         if(instance == null) {
             // 多个线程卡在这里
-            synchronized (Singleton.DoubleCheckSingleton.class) {
+            synchronized (DoubleCheckSingleton.class) {
                 // 线程a 进入，然后创建退出代码块，此时线程B进入，如果没有双重检查锁，会重复创建
                 if(instance == null) {
-                    instance = new Singleton.DoubleCheckSingleton();
+                    instance = new DoubleCheckSingleton();
                 }
             }
         }
