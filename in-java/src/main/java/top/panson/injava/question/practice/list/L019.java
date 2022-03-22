@@ -30,20 +30,21 @@ public class L019 {
             // 不要直接返回head, head 可能已经改变
             return dummy.next;
         }
-    }
 
-    private ListNode findMatchNode(int k, ListNode dummy) {
-        ListNode p1 = dummy;
-        ListNode p2 = dummy;
 
-        for(int i = 0; i < k; i++) {
-            p1 = p1.next;
+        private ListNode findMatchNode(int k, ListNode dummy) {
+            ListNode p1 = dummy;
+            ListNode p2 = dummy;
+
+            for (int i = 0; i < k; i++) {
+                p1 = p1.next;
+            }
+
+            while (p1 != null) {
+                p1 = p1.next;
+                p2 = p2.next;
+            }
+            return p2;
         }
-
-        while(p1 != null) {
-            p1 = p1.next;
-            p2 = p2.next;
-        }
-        return p2;
     }
 }
