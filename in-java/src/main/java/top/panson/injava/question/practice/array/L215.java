@@ -45,17 +45,18 @@ public class L215 {
     class Solution3 {
 
         Random random = new Random();
+
         public int findKthLargest(int[] nums, int k) {
             int left = 0;
             int right = nums.length - 1;
             // 第 k 大，等于第 nums.length - k + 1小，从 0 开始计数的话，再减一
             int target = nums.length - k;
 
-            while(true) {
+            while (true) {
                 int q = patition(nums, left, right);
-                if(q == target) {
+                if (q == target) {
                     return nums[q];
-                } else if(q < target) {
+                } else if (q < target) {
                     // 在q右侧
                     left = q + 1;
                 } else {
@@ -65,14 +66,14 @@ public class L215 {
         }
 
         public int patition(int[] nums, int left, int right) {
-            if(right > left) {
+            if (right > left) {
                 int randomIndex = left + random.nextInt(right - left);
                 swap(nums, randomIndex, right);
             }
 
             int i = left;
-            for(int j = left; j < right; j++) {
-                if(nums[j] < nums[right]) {
+            for (int j = left; j < right; j++) {
+                if (nums[j] < nums[right]) {
                     swap(nums, i++, j);
                 }
             }
@@ -87,3 +88,4 @@ public class L215 {
             nums[j] = tmp;
         }
     }
+}
