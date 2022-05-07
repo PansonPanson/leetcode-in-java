@@ -40,8 +40,8 @@ public class L003 {
         public static void main(String[] args) {
             System.out.println(lengthOfLongestSubstring(" "));
             System.out.println(lengthOfLongestSubstring("abx"));
-
             System.out.println(lengthOfLongestSubstring("abcabcbb"));
+            System.out.println(lengthOfLongestSubstring("pwwkew"));
         }
 
         /**
@@ -62,15 +62,39 @@ public class L003 {
             for (int i = 0; i < s.length(); i++) {
                 Character character = s.charAt(i);
                 Integer index = map.get(character);
-                if (index != null) {
-                    if (index > head) {
+                if (index != null && index > head) {
                         head = index;
-                    }
                 }
                 max = Math.max(max, i - head);
                 map.put(character, i);
             }
             return max;
+        }
+    }
+
+    // 0507
+    static class Solution001 {
+
+
+        public static void main(String[] args) {
+            String s = "pwwkew";
+            int i = lengthOfLongestSubstring(s);
+            System.out.println(i);
+        }
+        public static int lengthOfLongestSubstring(String s) {
+            Map<Character, Integer> map = new HashMap<>();
+            int count = 0;
+            int head = -1;
+            for(int i = 0; i < s.length(); i++) {
+                Character current = s.charAt(i);
+                Integer index = map.get(current);
+                if(index != null && index > head) {
+                    head = index;
+                }
+                count = Math.max(i - head, count);
+                map.put(current, i);
+            }
+            return count;
         }
     }
 
