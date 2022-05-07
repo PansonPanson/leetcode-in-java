@@ -1,6 +1,7 @@
 package top.panson.injava.question.practice.concurrency;
 
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 1114. 按序打印
@@ -9,6 +10,7 @@ import java.util.concurrent.Semaphore;
  * @Author: Panson
  */
 public class L1114 {
+    // 使用 Semaphore
     class Foo {
 
         private Semaphore semaphore12;
@@ -36,6 +38,42 @@ public class L1114 {
 
         public void third(Runnable printThird) throws InterruptedException {
             semaphore23.acquire();
+            // printThird.run() outputs "third". Do not change or remove this line.
+            printThird.run();
+        }
+    }
+
+
+    // 使用 AtomicInteger
+    class Foo1 {
+
+        private AtomicInteger firstAtomicInteger;
+        private AtomicInteger secondAtomicInteger;
+        public Foo1() {
+            firstAtomicInteger = new AtomicInteger(0);
+            secondAtomicInteger = new AtomicInteger(0);
+        }
+
+        public void first(Runnable printFirst) throws InterruptedException {
+
+            // printFirst.run() outputs "first". Do not change or remove this line.
+            printFirst.run();
+            firstAtomicInteger.incrementAndGet();
+        }
+
+        public void second(Runnable printSecond) throws InterruptedException {
+            while(firstAtomicInteger.get() != 1) {
+                // waiting
+            }
+            // printSecond.run() outputs "second". Do not change or remove this line.
+            printSecond.run();
+            secondAtomicInteger.incrementAndGet();
+        }
+
+        public void third(Runnable printThird) throws InterruptedException {
+            while(secondAtomicInteger.get() != 1) {
+                // waiting
+            }
             // printThird.run() outputs "third". Do not change or remove this line.
             printThird.run();
         }
