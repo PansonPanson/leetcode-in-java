@@ -2,6 +2,9 @@ package top.panson.injava.question.practice.tree;
 
 import top.panson.injava.question.commondata.Node;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /**
  * @create 2022-03-14 23:45
  * @Author: Panson
@@ -32,7 +35,7 @@ class Node {
 
     class Solution {
         public Node connect(Node root) {
-            if(root == null) {
+            if (root == null) {
                 return null;
             }
             connectTwoNode(root.left, root.right);
@@ -40,13 +43,41 @@ class Node {
         }
 
         public void connectTwoNode(Node node1, Node node2) {
-            if(node1 == null || node2 == null) {
+            if (node1 == null || node2 == null) {
                 return;
             }
             node1.next = node2;
             connectTwoNode(node1.left, node1.right);
             connectTwoNode(node2.left, node2.right);
             connectTwoNode(node1.right, node2.left);
+        }
+    }
+
+    class Solution1 {
+        public Node connect(Node root) {
+            if (root == null) {
+                return root;
+            }
+
+            Deque<Node> queue = new ArrayDeque<>();
+            queue.offer(root);
+            while (!queue.isEmpty()) {
+                int size = queue.size();
+                for (int i = 0; i < size; i++) {
+                    Node current = queue.poll();
+                    if (i < size - 1) {
+                        current.next = queue.peek();
+                    }
+
+                    if (current.left != null) {
+                        queue.offer(current.left);
+                    }
+                    if (current.right != null) {
+                        queue.offer(current.right);
+                    }
+                }
+            }
+            return root;
         }
     }
 }
