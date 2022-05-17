@@ -7,6 +7,6 @@ package top.panson.injava.question.practice;
 
 /**
  * 练习顺序：
- * 1. 前序遍历、中序遍历、后序遍历
+ * 1. 前序遍历、中序遍历、后序遍历、层序遍历
  * 2. 翻转二叉树
  */
