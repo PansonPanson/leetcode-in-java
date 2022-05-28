@@ -10,7 +10,7 @@ import java.util.Set;
  * @Author: Panson
  */
 public class RecommendProductDemo {
-    private Jedis jedis = new Jedis("127.0.0.1");
+    private static Jedis jedis = new Jedis("127.0.0.1");
 
     /**
      * 继续购买商品
@@ -32,6 +32,7 @@ public class RecommendProductDemo {
 
     public static void main(String[] args) throws Exception {
         RecommendProductDemo demo = new RecommendProductDemo();
+        jedis.flushAll();
 
         int productId = 1;
 
