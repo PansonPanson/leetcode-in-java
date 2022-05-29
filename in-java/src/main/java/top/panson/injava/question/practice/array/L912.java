@@ -1,12 +1,14 @@
 package top.panson.injava.question.practice.array;
 
+import java.util.Arrays;
+
 /**
  * @create 2022-03-27 23:30
  * @Author: Panson
  */
 public class L912 {
 
-    class Solution {
+    static class Solution {
 
         private int[] temp;
 
@@ -46,5 +48,32 @@ public class L912 {
                 }
             }
         }
+
+        public void merge(int[] a, int[] b) {
+
+            int m = a.length;
+            int n = b.length;
+            int [] res = new int[m + n];
+
+            for(int i = 0, j = 0; i < m || j < n;) {
+                if(i == m) {
+                    res[i + j] = b[j++];
+                } else if (j == n){
+                    res[i + j] = a[i++];
+                } else if (a[i] <= b[j]) {
+                    res[i + j] = a[i++];
+                } else {
+                    res[i + j] = a[j++];
+                }
+            }
+            System.out.println(Arrays.toString(res));
+        }
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int[] a = new int[] {1, 2, 3, 4};
+        int[] b = new int[] {1, 2, 3, 4};
+        solution.merge(a, b);
     }
 }
