@@ -42,4 +42,34 @@ public class L206 {
             return lastNode;
         }
     }
+
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     *     int val;
+     *     ListNode next;
+     *     ListNode() {}
+     *     ListNode(int val) { this.val = val; }
+     *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * }
+     */
+    class Solution02 {
+        public ListNode reverseList(ListNode head) {
+            if(head == null) {
+                return head;
+            }
+            return reverseList(null, head);
+        }
+
+        public ListNode reverseList(ListNode pre, ListNode cur) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            if(next == null) {
+                return cur;
+            }
+            return reverseList(cur, next);
+        }
+
     }
+
+}
