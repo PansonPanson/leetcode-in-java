@@ -56,4 +56,46 @@ public class L025 {
             return newHead;
         }
     }
+
+
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     *     int val;
+     *     ListNode next;
+     *     ListNode() {}
+     *     ListNode(int val) { this.val = val; }
+     *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * }
+     */
+    class Solution1 {
+        public ListNode reverseKGroup(ListNode head, int k) {
+            if(head == null) {
+                return null;
+            }
+            ListNode p = head;
+            for(int i = 0; i < k; i++) {
+                if(p == null) {
+                    return head;
+                }
+                p = p.next;
+            }
+            ListNode newHead = reverse(head, p);
+            head.next =  reverseKGroup(p, k);
+            return newHead;
+        }
+
+        public ListNode reverse(ListNode head, ListNode tail) {
+            ListNode pre = null;
+            ListNode cur = head;
+            ListNode next;
+            while(cur != tail) {
+                next = cur.next;
+                cur.next = pre;
+                pre = cur;
+                cur = next;
+            }
+            return pre;
+        }
+    }
 }

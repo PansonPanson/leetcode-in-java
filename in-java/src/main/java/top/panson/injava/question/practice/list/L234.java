@@ -59,4 +59,58 @@ public class L234 {
 
 
     }
+
+
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     *     int val;
+     *     ListNode next;
+     *     ListNode() {}
+     *     ListNode(int val) { this.val = val; }
+     *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * }
+     */
+    class Solution1 {
+        public boolean isPalindrome(ListNode head) {
+            ListNode slow = head;
+            ListNode fast = head;
+            // [1, 2, 3, 4, 5, 6, 7]
+            // [1 2 3 4 5 6]
+            while(fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            if(fast != null) {
+                slow = slow.next;
+            }
+            ListNode newHead = reverse(slow);
+            ListNode p = head;
+            while(newHead != null) {
+                if(newHead.val != p.val) {
+                    return false;
+                }
+                newHead = newHead.next;
+                p = p.next;
+            }
+            return true;
+        }
+
+
+        public ListNode reverse(ListNode slow) {
+            if(slow == null) {
+                return null;
+            }
+            ListNode pre = null;
+            ListNode cur = slow;
+            ListNode next;
+            while(cur != null) {
+                next = cur.next;
+                cur.next = pre;
+                pre = cur;
+                cur = next;
+            }
+            return pre;
+        }
+    }
 }
