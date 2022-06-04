@@ -4,7 +4,7 @@ package top.panson.injava.question.practice.array;
  * @create 2022-06-04 00:10
  * @Author: Panson
  */
-public class L370 {
+public class L1109 {
 
     class Solution {
         int[] dif;
