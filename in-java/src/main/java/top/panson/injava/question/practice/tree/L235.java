@@ -19,18 +19,22 @@ public class L235 {
 
     class Solution {
         public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+            int min = Math.min(p.val, q.val);
+            int max = Math.max(p.val, q.val);
+            return find(root, min, max);
+        }
+
+        private TreeNode find(TreeNode root, int min, int max) {
             if(root == null) {
                 return null;
             }
-            if(root.val == p.val || root.val == q.val) {
-                return root;
+            if(root.val > max) {
+                return find(root.left, min, max);
             }
-            TreeNode left = lowestCommonAncestor(root.left, p, q);
-            TreeNode right = lowestCommonAncestor(root.right, p, q);
-            if(left != null && right != null) {
-                return root;
+            if(root.val < min) {
+                return find(root.right, min, max);
             }
-            return left == null ? right : left;
+            return root;
         }
     }
 }
