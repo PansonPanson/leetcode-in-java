@@ -7,6 +7,11 @@ import top.panson.injava.question.commondata.TreeNode;
  * @Author: Panson
  */
 public class L112 {
+
+
+    /**
+     * dfs
+     */
     class Solution {
         public boolean hasPathSum(TreeNode root, int targetSum) {
             if(root == null) {
