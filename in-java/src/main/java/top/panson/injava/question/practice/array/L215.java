@@ -88,4 +88,18 @@ public class L215 {
             nums[j] = tmp;
         }
     }
+
+
+    class Solution1 {
+        public int findKthLargest(int[] nums, int k) {
+            PriorityQueue<Integer> queue = new PriorityQueue<>(k, (a, b) -> a -b);
+            for(int i = 0; i < nums.length; i++) {
+                queue.offer(nums[i]);
+            }
+            while(queue.size() > k) {
+                queue.poll();
+            }
+            return queue.poll();
+        }
+    }
 }
