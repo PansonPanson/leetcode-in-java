@@ -1,2 +1,1 @@
-# leetcode-in-java
-leetcode 刷题
+leetcode 练习 和 sql 练习
