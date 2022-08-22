@@ -1,6 +1,5 @@
 package top.panson.injava.question.practice.concurrency;
 
-import org.springframework.core.task.support.ExecutorServiceAdapter;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
