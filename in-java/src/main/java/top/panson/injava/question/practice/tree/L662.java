@@ -3,10 +3,7 @@ package top.panson.injava.question.practice.tree;
 import javafx.util.Pair;
 import top.panson.injava.question.commondata.TreeNode;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 /**
  * @create 2022-08-27 10:45
@@ -97,6 +94,28 @@ public class L662 {
         }
 
 
+        class Solution1 {
+            Map<Integer, Integer> levelMin = new HashMap<Integer, Integer>();
+
+            public int widthOfBinaryTree(TreeNode root) {
+                return dfs(root, 1, 1);
+            }
+
+            /**
+             * 返回当前节点为根节点的树的最大宽度
+             * @param node
+             * @param depth
+             * @param index
+             * @return
+             */
+            public int dfs(TreeNode node, int depth, int index) {
+                if (node == null) {
+                    return 0;
+                }
+                levelMin.putIfAbsent(depth, index); // 每一层最先访问到的节点会是最左边的节点，即每一层编号的最小值
+                return Math.max(index - levelMin.get(depth) + 1, Math.max(dfs(node.left, depth + 1, index * 2), dfs(node.right, depth + 1, index * 2 + 1)));
+            }
+        }
 
     }
 
