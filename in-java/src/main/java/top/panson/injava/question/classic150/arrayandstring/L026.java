@@ -6,6 +6,7 @@ package top.panson.injava.question.classic150.arrayandstring;
  */
 public class L026 {
 
+
     class Solution {
         public int removeDuplicates(int[] nums) {
             if(nums.length <= 1) {
