@@ -1,5 +1,10 @@
 package top.panson.injava.question.practice.array;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * @create 2022-03-28 00:23
  * @Author: Panson
@@ -87,6 +92,29 @@ public class QuickSort {
 
             System.out.println("i=" + i);
             return i;
+        }
+    }
+
+    public static void main(String[] args) {
+        int  x = 50;
+        Integer[] randomArray = {1, 6 , 20};
+        Arrays.sort(randomArray, Collections.reverseOrder());
+        List<String> ret = new ArrayList<>();
+        for(Integer num : randomArray) {
+
+            int count = x / num;
+            if(count > 0) {
+                ret.add(count + " 个 " + num);
+            }
+            int remainder = x % num;
+            if(remainder == 0) {
+                break;
+            }
+            x = remainder;
+
+        }
+        for(String str : ret) {
+            System.out.println(str);
         }
     }
 }

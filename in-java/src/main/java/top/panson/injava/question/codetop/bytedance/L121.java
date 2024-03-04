@@ -1,5 +1,11 @@
 package top.panson.injava.question.codetop.bytedance;
 
+import com.alibaba.fastjson.JSON;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @create 2022-06-10 11:27
  * @Author: Panson
@@ -36,5 +42,17 @@ public class L121 {
             }
             return dpi0;
         }
+    }
+
+
+    public static void main(String[] args) {
+        Student student = new Student();
+        student.setId(1L);
+        student.setName("A");
+        List<Student> students = new ArrayList<>();
+        students.add(student);
+        List<Student> newStudents = students.stream().filter(a -> a.getName().equals("A")).collect(Collectors.toList());
+        student.setName("B");
+        System.out.printf(JSON.toJSONString(newStudents));
     }
 }
